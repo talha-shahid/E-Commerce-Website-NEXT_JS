@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 
-const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
+const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
   // console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
   const reff = useRef();
 
@@ -64,7 +64,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
         className="sideCart absolute top-0 right-0 bg-pink-100 p-10 transform transition-transform translate-x-full z-10"
       >
         <h2 className="font-bold text-xl text-center">
-          This is my shopping cart
+          Shopping cart
         </h2>
         <span
           onClick={removeCart}
@@ -85,11 +85,18 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
             </div>
           </li>})}
         </ol>
+
+        <div className="ml-5 text-lg">
+            <b>SubTotal:</b> ${subtotal}
+          </div>
+
         <div className="flex">
+          <Link href={'/checkout'}>
           <button className="flex mx-auto mt-6 text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg mr-2">
             <BsFillBagCheckFill className="m-1" />
             Checkout
           </button>
+          </Link>
 
           <button onClick={clearCart} className="flex mx-auto mt-6 text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg mr-2">
             Clear Cart
