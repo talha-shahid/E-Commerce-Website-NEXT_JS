@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   const [subtotal, setSubtotal] = useState(0)
   useEffect(() => {
     return () => {
-      console.log("hi")
+      // console.log("hi")
       try {
         if(localStorage.getItem("cart")){
           setCart(JSON.parse(localStorage.getItem("cart")))
@@ -22,10 +22,10 @@ function MyApp({ Component, pageProps }) {
   
 
   const saveCart = (myCart)=>{
-    localStorage.setItem("cart", myCart)
+    localStorage.setItem("cart", JSON.stringify(myCart))
     let subt = 0;
     let keys = Object.keys(myCart)
-    console.log(keys)
+    // console.log(keys)
     for(let i=0; i<keys.length; i++){
       subt += myCart[keys[i]].price * myCart[keys[i]].qty;
     }
@@ -34,12 +34,14 @@ function MyApp({ Component, pageProps }) {
 
   const addToCart = (itemCode, qty, price, name, size, variant)=>{
     let newCart = cart;
+    // console.log("itemCode: " + itemCode)
     if(itemCode in cart){
       newCart[itemCode].qty = cart[itemCode].qty + qty
     }
     else{
       newCart[itemCode] = {qty: 1, price, name, size, variant}
     }
+    console.log(newCart)
     setCart(newCart)
     saveCart(newCart)
   }
