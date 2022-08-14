@@ -10,11 +10,11 @@ import {
 import { BsFillBagCheckFill } from "react-icons/bs";
 
 const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
-  console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
+  // console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
   const reff = useRef();
 
   const showCart = () => {
-    console.log(reff.current);
+    // console.log(reff.current);
     reff.current.classList.remove("translate-x-full");
     reff.current.classList.add("translate-x-0");
   };
@@ -25,11 +25,11 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col md:flex-row md:justify-start pt-2 pb-1 shadow-md">
+    <div className="flex justify-center items-center flex-col md:flex-row md:justify-start pt-2 pb-1 sticky top-0 shadow-lg bg-pink-500 z-50">
       <div className="logo mx-5">
         <Link href={"/"}>
           <Image
-            className="cursor-pointer"
+            className="cursor-pointer bg-white rounded-full hover:bg-neutral-100"
             height={70}
             width={70}
             src="/logo.png"
@@ -40,22 +40,22 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
         <ul className="flex items-center space-x-4 font-bold md:text-xl">
           <Link href={"/tshirts"}>
             <a>
-              <li>Tshirts</li>
+              <li className="text-2xl text-white hover:text-neutral-200 ">Tshirts</li>
             </a>
           </Link>
           <Link href={"/hoddies"}>
             <a>
-              <li>Hoodies</li>
+              <li className="text-2xl text-white hover:text-neutral-200">Hoodies</li>
             </a>
           </Link>
           <Link href={"/stickers"}>
             <a>
-              <li>Stickers</li>
+              <li className=" text-2xl text-white hover:text-neutral-200 ">Stickers</li>
             </a>
           </Link>
         </ul>
       </div>
-      <div onClick={showCart} className="cart absolute top-6 right-0 mx-5">
+      <div onClick={showCart} className="cart absolute top-6 right-0 mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
         <AiOutlineShoppingCart className="text-4xl cursor-pointer" />
       </div>
 
@@ -73,12 +73,13 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
           <AiFillCloseCircle />
         </span>
         <ol className="list-decimal p-4">
+          {Object.keys(cart).length==0 && <div className="mt-3">No items in the Cart</div>}
           {Object.keys(cart).map((k)=>{return <li key={k}>
             <div className="item flex mt-3 mx-3">
-              <div className="w-2/3 font-semibold ">{cart[k]}</div>
+              <div className="w-2/3 font-semibold ">{cart[k].name}</div>
               <div className="w-1/3 font-semibold flex items-center justify-center text-lg">
                 <AiFillMinusCircle className="text-pink-500 cursor-pointer" />
-                <span className="mx-2 text-base">3</span>
+                <span className="mx-2 text-base">{cart[k].qty}</span>
                 <AiFillPlusCircle className="text-pink-500 cursor-pointer" />
               </div>
             </div>
