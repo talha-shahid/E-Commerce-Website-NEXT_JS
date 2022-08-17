@@ -8,6 +8,7 @@ import {
   AiFillMinusCircle,
 } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import {MdAccountCircle} from "react-icons/md"
 
 const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
   // console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
@@ -25,7 +26,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col md:flex-row md:justify-start pt-2 pb-1 sticky top-0 shadow-lg bg-pink-500 z-50">
+    <div className="flex justify-center items-center flex-col md:flex-row md:justify-start pt-2 pb-1 sticky top-0 shadow-lg bg-gradient-to-b from-pink-800 via-pink-700 to-pink-500 z-50">
       <div className="logo mx-5">
         <Link href={"/"}>
           <Image
@@ -40,23 +41,28 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
         <ul className="flex items-center space-x-4 font-bold md:text-xl">
           <Link href={"/tshirts"}>
             <a>
-              <li className="text-2xl text-white hover:text-neutral-200 ">Tshirts</li>
+              <li className="text-2xl font-normal text-white hover:text-neutral-200 ">Tshirts</li>
             </a>
           </Link>
           <Link href={"/hoddies"}>
             <a>
-              <li className="text-2xl text-white hover:text-neutral-200">Hoodies</li>
+              <li className="text-2xl font-normal text-white hover:text-neutral-200">Hoodies</li>
             </a>
           </Link>
           <Link href={"/stickers"}>
             <a>
-              <li className=" text-2xl text-white hover:text-neutral-200 ">Stickers</li>
+              <li className=" text-2xl font-normal text-white hover:text-neutral-200 ">Stickers</li>
             </a>
           </Link>
         </ul>
       </div>
-      <div onClick={showCart} className="cart absolute top-6 right-0 mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
-        <AiOutlineShoppingCart className="text-4xl cursor-pointer" />
+
+      <div className="account absolute top-6 right-10 md:right-14 mx-2 md:mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
+        <Link href={'/login'}><a><MdAccountCircle className="text-2xl md:text-4xl cursor-pointer" /></a></Link>
+      </div>
+
+      <div onClick={showCart} className="cart absolute top-6 right-0 mx-2 md:mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
+        <AiOutlineShoppingCart className="text-2xl md:text-4xl cursor-pointer" />
       </div>
 
       <div
