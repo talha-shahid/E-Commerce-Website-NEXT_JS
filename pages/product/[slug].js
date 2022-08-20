@@ -1,14 +1,18 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
+import mongoose from "mongoose";
+import Product from "../../models/Product";
 
 //localhost:3000/product/dfgdfgfgd ==> dfgdfgfgd is {slug}
 
-const Slug = ({ addToCart }) => {
+const Slug = ({ addToCart, product, variants }) => {
+  console.log(product, variants)
   const router = useRouter();
   const reff = useRef();
   const { slug } = router.query;
   const [pin, setPin] = useState();
   const [service, setService] = useState(null);
+  // const [color, setColor] = useState(product.color)
 
   const checkService = async () => {
     let pins = await fetch("http://localhost:3000/api/pincode");
@@ -264,4 +268,27 @@ const Slug = ({ addToCart }) => {
   );
 };
 
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+  let product = await Product.findOne({ slug: context.query.slug });
+  let variants = await Product.find({ title: product.title });
+  let colorSizeSlug = {};
+  for (let item of variants) {
+    if (Object.keys(colorSizeSlug).includes(item.color)) {
+      colorSizeSlug[item.color][item.size] = { slug: item.slug };
+    } else {
+      colorSizeSlug[item.color] = {};
+      colorSizeSlug[item.color][item.size] = { slug: item.slug };
+    }
+  }
+  // console.log(tshirts)
+  return {
+    props: {
+      product: JSON.parse(JSON.stringify(product)),
+      variants: JSON.parse(JSON.stringify(colorSizeSlug)),
+    }, // will be passed to the page component as props
+  };
+}
 export default Slug;

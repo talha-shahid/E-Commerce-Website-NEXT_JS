@@ -4,17 +4,19 @@ import Product from "../models/Product"
 import mongoose from 'mongoose'
 
 
+
 const Tshirts = ({products}) => {
-  // console.log(products)
-  console.log(console.log(Object.keys(products)));
+  // console.pllog(products)
+  // console.log(Object.keys(products)); //---> ['0', '1', '2', '3']
   return (
     <div>
       <section className="text-gray-600 body-font bg-gradient-to-r from-indigo-300 via-blue-400 to-purple-500">
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-wrap -m-4 justify-center ">
       {Object.keys(products).map((item)=>{
+        // {console.log(item)}
         return <Link passHref={true} key={products[item]._id} href={`/product/${products[item].slug}`}>
-        <div className="lg:w-1/6 md:w-1/4 p-4 w-full cursor-pointer shadow-lg m-2 bg-white">
+        <div className="lg:w-1/6 md:w-1/4 p-4 w-full cursor-pointer m-2 bg-white shadow-2xl">
           <a className="block relative h-48 rounded overflow-hidden">
             <img alt="ecommerce" className="m-auto md:h-[30vh] h-[36vh] block" src={products[item].img}/>
           </a>
@@ -23,11 +25,19 @@ const Tshirts = ({products}) => {
             <h2 className="text-gray-900 title-font text-lg font-medium">{products[item].title}</h2>
             <p className="mt-1">{products[item].price}</p>
             <div className="mt-1">
-              S,
-              M,
-              L,
-              XL,
-              XXL</div>
+              {products[item].size.includes("S") && <span className='bg-gray-300 rounded px-1 mx-1'>S</span>}
+              {products[item].size.includes("M") && <span className=' bg-gray-300 rounded px-1 mx-1'>M</span>}
+              {products[item].size.includes("L") && <span className=' bg-gray-300 rounded px-1 mx-1'>L</span>}
+              {products[item].size.includes("XL") && <span className='bg-gray-300 rounded px-1 mx-1'>XL</span>}
+              {products[item].size.includes("XXL") && <span className='bg-gray-300 rounded px-1 mx-1'>XXL</span>}
+            </div>
+            <div className="mt-1">
+              {products[item].color.includes("red") && <button className="border-2 border-gray-300 ml-1 bg-red-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+              {products[item].color.includes("blue") && <button className="border-2 border-gray-300 ml-1 bg-blue-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+              {products[item].color.includes("black") && <button className="border-2 border-gray-300 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
+              {products[item].color.includes("green") && <button className="border-2 border-gray-300 ml-1 bg-green-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+              {products[item].color.includes("orange") && <button className="border-2 border-gray-300 ml-1 bg-orange-700 rounded-full w-6 h-6 focus:outline-none"></button>}
+            </div>
           </div>
         </div>
         </Link>
@@ -50,11 +60,11 @@ let tshirts = {}
 for(let item of products){
     // item //--> object
     if(item.title in tshirts){
-        if(!tshirts[item.title].color.includes(products[item].color) && products[item].availableQty>0){
-            tshirts[item.title].color.push(products[item].color)
+        if(!tshirts[item.title].color.includes(item.color) && item.availableQty>0){
+            tshirts[item.title].color.push(item.color)
         }
-        if(!tshirts[item.title].size.includes(products[item].size) && products[item].availableQty>0){
-            tshirts[item.title].size.push(products[item].size)
+        if(!tshirts[item.title].size.includes(item.size) && item.availableQty>0){
+            tshirts[item.title].size.push(item.size)
         }
     }
     else{
@@ -67,8 +77,9 @@ for(let item of products){
     }
     // console.log(tshirts)
 }
+// console.log(tshirts)
   return {
-    props: {products: JSON.parse(JSON.stringify(products))}, // will be passed to the page component as props
+    props: {products: JSON.parse(JSON.stringify(tshirts))}, // will be passed to the page component as props
   }
 }
 
