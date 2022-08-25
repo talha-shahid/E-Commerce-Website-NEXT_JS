@@ -11,6 +11,7 @@ const handler = async (req, res)=>{
     let tshirts = {}
     for(let item of products){
         // item //--> object
+        console.log(item)
         if(item.title in tshirts){
             if(!tshirts[item.title].color.includes(item.color) && item.availableQty>0){
                 tshirts[item.title].color.push(item.color)
