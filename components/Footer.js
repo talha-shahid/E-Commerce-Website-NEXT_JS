@@ -13,7 +13,7 @@ const Footer = () => {
           <span className="ml-3 text-xl">Codes<div className='-mt-2'>Wear</div></span>
         </a>
         </Link>
-        <p className="mt-5 px-3 text-sm text-white">Air plant banjo lyft occupy retro adaptogen indego</p>
+        <p className="mt-5 px-3 text-sm text-white">Live the Imagined Reality with CodesWear - Wear the Best</p>
       </div>
       <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -88,8 +88,7 @@ const Footer = () => {
     </div>
     <div className="bg-indigo-800">
       <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-        <p className="text-white text-sm text-center sm:text-left">© 2020 Tailblocks —
-          <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" className="text-white ml-1" target="_blank">@knyttneve</a>
+        <p className="text-white text-sm text-center sm:text-left">© CodesWear — Wear the Best
         </p>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
           <a className="text-white">

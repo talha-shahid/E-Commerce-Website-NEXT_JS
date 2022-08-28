@@ -30,7 +30,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
       <div className="logo mx-5">
         <Link href={"/"}>
           <Image
-            className="cursor-pointer bg-white rounded-full hover:bg-neutral-100"
+            className="cursor-pointer bg-white rounded-full hover:bg-neutral-200"
             height={70}
             width={70}
             src="/logo.png"
@@ -40,17 +40,17 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
       <div className="nav">
         <ul className="flex items-center space-x-4 font-bold md:text-xl">
           <Link href={"/tshirts"}>
-            <a>
+            <a className="hover:border-b-2 hover:border-neutral-300">
               <li className="text-2xl font-normal text-white hover:text-neutral-200 ">Tshirts</li>
             </a>
           </Link>
           <Link href={"/hoddies"}>
-            <a>
+            <a className="hover:border-b-2 hover:border-neutral-300">
               <li className="text-2xl font-normal text-white hover:text-neutral-200">Hoodies</li>
             </a>
           </Link>
           <Link href={"/stickers"}>
-            <a>
+            <a className="hover:border-b-2 hover:border-neutral-300">
               <li className=" text-2xl font-normal text-white hover:text-neutral-200 ">Stickers</li>
             </a>
           </Link>
@@ -64,10 +64,10 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
       <div onClick={showCart} className="cart absolute top-6 right-0 mx-2 md:mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
         <AiOutlineShoppingCart className="text-2xl md:text-4xl cursor-pointer" />
       </div>
-
+      
       <div
         ref={reff}
-        className="sideCart absolute top-0 right-0 bg-pink-200 shadow-sm shadow-pink-900  p-10 transform transition-transform translate-x-full z-10"
+        className="sideCart absolute top-0 right-0 bg-pink-200 shadow-sm shadow-pink-900  p-10 transform transition-transform translate-x-full z-10" //overflow-y-scroll 
       >
         <h2 className="font-bold text-xl text-center">
           Shopping cart
@@ -81,8 +81,9 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
         <ol className="list-decimal p-4">
           {Object.keys(cart).length==0 && <div className="mt-3">No items in the Cart</div>}
           {Object.keys(cart).map((k)=>{return <li key={k}>
+            {/* {console.log(cart)} */}
             <div className="item flex mt-3 mx-3">
-              <div className="w-2/3 font-semibold ">{cart[k].name}</div>
+              <div className="w-2/3 font-semibold ">{cart[k].name}({cart[k].size}/{cart[k].variant})</div>
               <div className="w-1/3 font-semibold flex items-center justify-center text-lg">
                 <AiFillMinusCircle size={20} onClick={()=>{removeFromCart(k, 1, cart[k].price, cart[k], cart[k].name, cart[k].size, cart[k].varaint)}} className="text-pink-500 cursor-pointer drop-shadow-md hover:text-pink-600" />
                 <span className="mx-2 text-base">{cart[k].qty}</span>

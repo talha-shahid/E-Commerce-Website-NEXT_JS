@@ -5,7 +5,6 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <>
-    
     <Image src="/cover6.jpg" width="4032px"
       height="1481px"
 />
@@ -80,7 +79,7 @@ export default function Home() {
         </div>
       </div>
       <div className="xl:w-1/3 md:w-1/2 p-4">
-        <div className="border border-indigo-100 p-6 rounded-lg bg-indigo-200 shadow-md shadow-sky-500 hover:shadow-sky-900 hover:shadow-lg">
+        <div className="border border-indigo-100 p-6 rounded-lg bg-indigo-200 shadow-md shadow-sky-500 hover:shadow-sky-900 hover:shadow-lg ">
           <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-pink-500 mb-4">
             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-6 h-6" viewBox="0 0 24 24">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>

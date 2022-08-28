@@ -129,7 +129,7 @@ const Checkout = ({ cart, subtotal, clearCart, addToCart, removeFromCart }) => {
               return (
                 <li key={k}>
                   <div className="item flex mt-3 mx-3">
-                    <div className="w-2/3 font-semibold ">{cart[k].name}</div>
+                    <div className="w-2/3 font-semibold ">{cart[k].name} ({cart[k].size}/{cart[k].variant})</div>
                     <div className="w-1/3 font-semibold flex items-center justify-center text-lg">
                       <AiFillMinusCircle
                         onClick={() => {

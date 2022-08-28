@@ -16,20 +16,20 @@ const Tshirts = ({products}) => {
       {Object.keys(products).map((item)=>{
         // {console.log(item)}
         return <Link passHref={true} key={products[item]._id} href={`/product/${products[item].slug}`}>
-        <div className="lg:w-1/6 md:w-1/4 p-4 w-full cursor-pointer m-2 bg-white shadow-2xl">
-          <a className="block relative h-48 rounded overflow-hidden">
-            <img alt="ecommerce" className="m-auto md:h-[30vh] h-[36vh] block" src={products[item].img}/>
+        <div className="lg:w-1/6 md:w-1/4 p-4 w-full cursor-pointer m-2 bg-gradient-to-b from-pink-800 via-pink-700 to-pink-500 rounded-md shadow-md shadow-pink-900 hover:shadow-sky-900 hover:shadow-lg border border-neutral-700">
+          <a className="block relative h-48 rounded overflow-hidden ">
+            <img alt="ecommerce" className="m-auto md:h-[30vh] h-[36vh] block shadow-xl shadow-rose-900" src={products[item].img}/>
           </a>
           <div className="mt-4 text-center">
-            <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">Tshirt</h3>
-            <h2 className="text-gray-900 title-font text-lg font-medium">{products[item].title}</h2>
-            <p className="mt-1">{products[item].price}</p>
+            <h3 className="text-white text-xs tracking-widest title-font mb-1">Tshirt</h3>
+            <h2 className="text-white title-font text-lg font-medium">{products[item].title}</h2>
+            <p className="mt-1 text-white">{products[item].price}</p>
             <div className="mt-1">
-              {products[item].size.includes("S") && <span className='bg-gray-300 rounded px-1 mx-1'>S</span>}
-              {products[item].size.includes("M") && <span className=' bg-gray-300 rounded px-1 mx-1'>M</span>}
-              {products[item].size.includes("L") && <span className=' bg-gray-300 rounded px-1 mx-1'>L</span>}
-              {products[item].size.includes("XL") && <span className='bg-gray-300 rounded px-1 mx-1'>XL</span>}
-              {products[item].size.includes("XXL") && <span className='bg-gray-300 rounded px-1 mx-1'>XXL</span>}
+              {products[item].size.includes("S") && <span className='bg-gray-200 rounded px-1 mx-1'>S</span>}
+              {products[item].size.includes("M") && <span className=' bg-gray-200 rounded px-1 mx-1'>M</span>}
+              {products[item].size.includes("L") && <span className=' bg-gray-200 rounded px-1 mx-1'>L</span>}
+              {products[item].size.includes("XL") && <span className='bg-gray-200 rounded px-1 mx-1'>XL</span>}
+              {products[item].size.includes("XXL") && <span className='bg-gray-200 rounded px-1 mx-1'>XXL</span>}
             </div>
             <div className="mt-1">
               {products[item].color.includes("red") && <button className="border-2 border-gray-300 ml-1 bg-red-700 rounded-full w-6 h-6 focus:outline-none"></button>}

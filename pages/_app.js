@@ -2,10 +2,13 @@ import '../styles/globals.css'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import {useState, useEffect} from 'react'
+import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({})
   const [subtotal, setSubtotal] = useState(0)
+  const router = useRouter()
+
   useEffect(() => {
     return () => {
       // console.log("hi")
@@ -21,7 +24,7 @@ function MyApp({ Component, pageProps }) {
     }
   }, [])
   
-
+// Save Cart
   const saveCart = (myCart)=>{
     localStorage.setItem("cart", JSON.stringify(myCart))
     let subt = 0;
@@ -33,6 +36,7 @@ function MyApp({ Component, pageProps }) {
     setSubtotal(subt)
   }
 
+// Add To Cart
   const addToCart = (itemCode, qty, price, name, size, variant)=>{
     let newCart = cart;
     // console.log("itemCode: " + itemCode)
@@ -47,6 +51,7 @@ function MyApp({ Component, pageProps }) {
     saveCart(newCart)
   }
 
+// Remove From Cart
   const removeFromCart = (itemCode, qty, price, name, size, variant)=>{
     let newCart = cart;
     if(itemCode in cart){
@@ -59,12 +64,22 @@ function MyApp({ Component, pageProps }) {
     saveCart(newCart)
   }
 
+// Clear Cart
   const clearCart = ()=>{
     setCart({})
     saveCart({})
   }
 
-  return <><Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal}/><Component  cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal}{...pageProps} /><Footer/></>
+// Buy Now
+  const buyNow = (itemCode, qty, price, name, size, variant)=>{ 
+    let newCart = {itemCode: {qty:1, price, name, size, variant}}
+    setCart(newCart)
+    saveCart(newCart)
+    router.push('/checkout')
+    
+  }
+
+  return <><Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal}/><Component  buyNow={buyNow} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subtotal={subtotal}{...pageProps} /><Footer/></>
 }
 
 export default MyApp
