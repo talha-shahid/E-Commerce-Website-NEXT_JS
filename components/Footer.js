@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Footer = () => {
   return (
-    <div><footer className="text-white body-font bg-indigo-900">
+    <div><footer className="text-white body-font bg-gray-800">
     <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
       <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
         <Link href={""}>
@@ -86,7 +86,7 @@ const Footer = () => {
         </div>
       </div>
     </div>
-    <div className="bg-indigo-800">
+    <div className="bg-gray-900">
       <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
         <p className="text-white text-sm text-center sm:text-left">© CodesWear — Wear the Best
         </p>

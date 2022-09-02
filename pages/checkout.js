@@ -4,6 +4,7 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { BsFillBagCheckFill } from "react-icons/bs";
 
 const Checkout = ({ cart, subtotal, clearCart, addToCart, removeFromCart }) => {
+  console.log(cart)
   return (
     <div className="bg-gradient-to-r from-indigo-300 via-blue-400 to-purple-500 pb-10 flex items-center justify-center ">
       <div className="container mt-10 rounded-3xl w-2/3 flex items-center justify-center flex-col bg-gradient-to-b from-pink-800 via-pink-700 to-pink-500 pb-10 shadow-lg shadow-pink-900">

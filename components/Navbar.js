@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,9 +10,13 @@ import {
 import { BsFillBagCheckFill } from "react-icons/bs";
 import {MdAccountCircle} from "react-icons/md"
 
-const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
+const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subtotal}) => {
   // console.log(cart, addToCart, removeFromCart, clearCart, subTotal)
   const reff = useRef();
+  const [dropDown, setDropDown] = useState(false)
+  const toggleDropDown= ()=>{
+    setDropDown(!dropDown)
+  }
 
   const showCart = () => {
     // console.log(reff.current);
@@ -26,8 +30,8 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col md:flex-row md:justify-start pt-2 pb-1 sticky top-0 shadow-lg bg-gradient-to-b from-pink-800 via-pink-700 to-pink-500 z-50 ">
-      <div className="logo mx-5">
+    <div className="flex justify-center items-center flex-col md:flex-row md:justify-start pt-2 pb-1 sticky top-0 shadow-lg bg-gradient-to-b from-pink-800 via-pink-700 to-pink-500 z-50  ">
+      <div className="logo mx-5 ">
         <Link href={"/"}>
           <Image
             className="cursor-pointer bg-white rounded-full hover:bg-neutral-200"
@@ -56,12 +60,22 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subtotal}) => {
           </Link>
         </ul>
       </div>
+        <span onMouseOver={()=>{setDropDown(true)}} onMouseLeave={()=>{setDropDown(false)}}>
+        {dropDown && <div className=" absolute right-12 bg-pink-300 top-20 rounded-md p-5 w-36 ">
+          <div className=" bg-pink-300 transform w-9 h-6 absolute -mt-1 top-0 rounded-lg  right-5 rotate-45 "></div>
+          <ul>
+            <Link href={"/myaccount"}><a><li className="font-semibold py-2 hover:text-pink-700 hover:cursor-pointer">My Account</li></a></Link>
+            <Link href={"/orders"}><a><li className="font-semibold py-2 hover:text-pink-700 hover:cursor-pointer">Orders</li></a></Link>
+            <li onClick={logout} className="font-semibold py-2 hover:text-pink-700 hover:cursor-pointer">Logout</li>
+          </ul>
+        </div>}
 
-      <div className="account absolute top-6 right-10 md:right-14 mx-2 md:mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
-        <Link href={'/login'}><a><MdAccountCircle className="text-2xl md:text-4xl cursor-pointer" /></a></Link>
-      </div>
+        {user.value && <div className="border border-black cart absolute top-6 right-12 mx-2 md:mx-5 bg-white rounded-full p-2 hover:bg-neutral-200 md:p-1"><MdAccountCircle  className="text-2xl md:text-4xl cursor-pointer" /></div>}
+        </span>
 
-      <div onClick={showCart} className="cart absolute top-6 right-0 mx-2 md:mx-5 bg-white rounded-full p-1 hover:bg-neutral-200">
+        {!user.value && <Link href={'/login'}><a><button className="absolute top-7 md:right-16 bg-white  rounded-xl py-1.5 md:py-1 px-2 md:px-1 md:text-base lg:text-base text-sm drop-shadow-xl border border-black font-semibold md:font-bold hover:bg-neutral-200 right-14 md:mr-2">Login</button></a></Link>}
+
+      <div onClick={showCart} className="border border-black cart absolute top-6 right-0 mx-2 md:mx-5 bg-white rounded-full p-2 hover:bg-neutral-200 md:p-1">
         <AiOutlineShoppingCart className="text-2xl md:text-4xl cursor-pointer" />
       </div>
       

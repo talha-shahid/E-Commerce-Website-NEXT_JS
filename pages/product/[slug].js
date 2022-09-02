@@ -30,7 +30,7 @@ const Slug = ({ addToCart, product, variants, buyNow }) => {
   // Check Service
   const checkService = async () => {
     // toast("Checking your pincode");
-    let pins = await fetch("http://localhost:3000/api/pincode");
+    let pins = await fetch(`${process.env.HOST}/api/pincode`);
     let pinJson = await pins.json();
     // console.log(pinJson)
     // console.log(typeof pinJson[0])
@@ -69,7 +69,7 @@ const Slug = ({ addToCart, product, variants, buyNow }) => {
 
   // Refresh Variant
   const refreshVariant = (newsize, newcolor) => {
-    let url = `http://localhost:3000/product/${variants[newcolor][newsize]["slug"]}`;
+    let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newcolor][newsize]["slug"]}`;
     window.location = url;
   };
 
